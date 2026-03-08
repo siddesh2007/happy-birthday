@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium 3D cinematic birthday wishes website for Akka.">
+  <title>Happy Birthday Akka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-layer ambient-one" aria-hidden="true"></div>
+  <div class="ambient-layer ambient-two" aria-hidden="true"></div>
+
+  <div id="entry-overlay" role="dialog" aria-live="polite" aria-label="Birthday opening animation">
+    <div class="entry-light" aria-hidden="true"></div>
+    <p class="entry-text">
+      Today is not just a day...<br>
+      It is the birthday of someone very special in my life.
+    </p>
+  </div>
+
+  <button id="music-tap" class="music-tap hidden" type="button">Tap to play birthday music</button>
+  <audio id="bg-music" src="assets/akka_thambi_bgm.mp3" preload="auto" loop></audio>
+
+  <main id="app">
+    <section id="hero" class="section hero in-view">
+      <div class="hero-content glass-panel">
+        <p class="hero-kicker">For My Dearest Akka</p>
+        <h1>
+          HAPPY BIRTHDAY MY DEAREST AKKA <span aria-hidden="true">&#10084;</span>
+        </h1>
+        <p class="hero-subtitle">My sister, my guide, my forever supporter.</p>
+        <p class="hero-message">
+          My Akka is not just my sister, she is my strength, my guide, and my biggest supporter in life.
+        </p>
+        <button id="open-message" class="glow-btn" type="button">Open My Birthday Message</button>
+      </div>
+
+      <div class="hero-cake-wrap glass-panel" aria-label="3D birthday cake with glowing candles">
+        <canvas id="cake-canvas"></canvas>
+      </div>
+    </section>
+
+    <section id="photo" class="section photo-section">
+      <div class="section-title-wrap">
+        <h2>A Precious Smile</h2>
+      </div>
+
+      <div class="photo-layout">
+        <div id="photo-frame" class="photo-frame">
+          <div class="photo-glow" aria-hidden="true"></div>
+          <img id="akka-photo" src="assets/akka-photo.jpg" alt="Photo of my sister Akka">
+          <div class="photo-fallback">Add assets/akka-photo.jpg to display her photo.</div>
+          <div class="mini-hearts" aria-hidden="true"></div>
+        </div>
+        <p class="photo-caption glass-panel">The strongest person I know.</p>
+      </div>
+    </section>
+
+    <section id="story" class="section story-section">
+      <div class="section-title-wrap">
+        <h2>Memory Story</h2>
+        <p>A scroll through the words that define my Akka.</p>
+      </div>
+
+      <div class="story-cards">
+        <article class="story-card reveal-card">
+          <h3>Scene 1</h3>
+          <p>In every situation of my life, my Akka has always been my backbone.</p>
+        </article>
+
+        <article class="story-card reveal-card">
+          <h3>Scene 2</h3>
+          <p>When I struggled in academics, she stood beside me and helped me move forward.</p>
+        </article>
+
+        <article class="story-card reveal-card">
+          <h3>Scene 3</h3>
+          <p>Her care and support mean the world to me.</p>
+        </article>
+
+        <article class="story-card reveal-card">
+          <h3>Scene 4</h3>
+          <p>Whenever I doubted myself, she believed in me.</p>
+        </article>
+
+        <article class="story-card reveal-card">
+          <h3>Scene 5</h3>
+          <p>Her encouragement makes me stronger every single day.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="emotional" class="section emotional-section">
+      <div class="heart-shell" aria-hidden="true"></div>
+      <div class="heart-text glass-panel">
+        <p>
+          Akka, you are not just my sister.<br>
+          You are my inspiration,<br>
+          my protector,<br>
+          and my biggest supporter in life.
+        </p>
+      </div>
+    </section>
+
+    <section id="grand" class="section grand-section">
+      <div class="light-rays" aria-hidden="true"></div>
+      <div id="balloon-field" class="balloon-field" aria-hidden="true"></div>
+      <div class="grand-cake" aria-hidden="true"></div>
+      <h2>HAPPY BIRTHDAY AKKA <span aria-hidden="true">&#127881;</span></h2>
+    </section>
+
+    <section id="final" class="section final-section">
+      <div class="final-card glass-panel">
+        <p>
+          Thank you for always believing in me.<br>
+          Thank you for always taking care of me.<br>
+          I am lucky to have a sister like you.<br><br>
+          Happy Birthday Akka <span aria-hidden="true">&#10084;</span>
+        </p>
+        <button id="surprise-btn" class="glow-btn" type="button">Click for a Special Surprise &#10084;</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="surprise-modal" class="surprise-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card glass-panel">
+      <h3>A Message From Your Little Brother</h3>
+      <p>
+        No matter where life takes us,<br>
+        you will always be my hero.<br><br>
+        Happy Birthday to the most amazing sister in the world.<br><br>
+        Love you Akka <span aria-hidden="true">&#10084;</span>
+      </p>
+      <button id="close-modal" class="glow-btn" type="button">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    Made with love by your little brother &#10084;
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
